@@ -4,4 +4,6 @@ srun -N 1 --ntasks-per-node=2 --mem-per-cpu=8gb -t 02:00:00 -p interactive --pty
 
 #question 1 
 cd /home/knightsd/public/mice5035/project1/046/dataset1
-#changed to directory 
+#changed to directory
+# make sure to do work in home directory and not these 
+
