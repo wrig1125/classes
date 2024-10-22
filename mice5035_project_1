@@ -1,0 +1,7 @@
+#login
+ssh wrig1125@login.msi.umn.edu
+srun -N 1 --ntasks-per-node=2 --mem-per-cpu=8gb -t 02:00:00 -p interactive --pty bash
+
+#question 1 
+cd /home/knightsd/public/mice5035/project1/046/dataset1
+#changed to directory 
