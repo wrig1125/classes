@@ -4,6 +4,12 @@ srun -N 1 --ntasks-per-node=2 --mem-per-cpu=8gb -t 02:00:00 -p interactive --pty
 
 #question 1 
 cd /home/knightsd/public/mice5035/project1/046/dataset1
-#changed to directory
+#printed out the fastq files
 # make sure to do work in home directory and not these 
+
+head -n 2 sample_001_L001_R1_001.fastq
+#lists the first two lines of the file
+# @M00784:58:000000000-B5H3F:1:1101:14224:1213 1:N:0:143
+# GTGCCAGCAGCCGCGGTAATACGGAGGATGCGAGCGTTATCCGGATTTCTTGGGTTTAAAGGGCGCGTAGGCGGGATGCCAAGTCAGCGGTACAAGTTTGCAGCTAAACTGTAGCACGCCGTTGAAAATGGTAACCTCGAGTCGAGTCGAGGATGGCGGGACAAGTGAAGTTGGGGTGAAAAGCTTAGATATCAATTGGAACCCCGGTAGTCAGGGCAGGTGTCCAGAATCGGACTGTAGCTGCTGTGCGGGAGCGTGGGTCGTGAACAGGATTTGCAAGCCGCGGTGGCCCTGTCTATTT
+#the second line represents the first DNA sequence
 
