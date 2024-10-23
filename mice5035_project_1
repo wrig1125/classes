@@ -60,19 +60,21 @@ mkdir -p wrig1125_project_1
 
 fastqc -o wrig1125_project_1 /users/7/wrig1125/wrig1125_project_1/dataset1/*.fastq
 #completing analysis on my files 
+#downlaoded zip file and opened the first one 
+# ran it into BLAST and got --> Uncultured bacterium gene for 16S rRNA, partial sequence, clone: SWD17
+# ran another test on another --> Uncultured bacterium clone 3393 16S ribosomal RNA gene, partial sequence
 
 module load python/3.6.3
 #load in shi7
 python3 /home/knightsd/public/shi7/shi7.py -h
-#command interface for shi7 
+#command interface for shi7 because this pathway is where it is located 
+
 # Before running the quality filtering
 # first use the -h flag to print out the instructions for shi7.py/. there are many different settings that can be specified using certain command-line "flags". ex, if you do not want to convert the output data to FASTA format (from FASTQ format), you can run shi7 with the flag --convert_fasta False.
 
-#changed directory to dataset1 ( the marker gene ) so I can start 
-cd /home/knightsd/public/mice5035/project1/046/dataset1
-
-python shi7.py -i 
-
+python3 /home/knightsd/public/shi7/shi7.py -i /users/7/wrig1125/wrig1125_project_1/dataset1 -o wrig1125_project_1 -filter_l 100 --combine_fasta False
+#changed the settings on shi7 for my data
+#gets rid of files under 100 nucleotides and doesnt change fastq to fasta after analysis 
 
 
 
