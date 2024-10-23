@@ -106,7 +106,20 @@ NGACTACTGGGGTTTCTAATCCTGTTCGCTACCCACGCTCTCGCGCATCAGCGTCAGATCGAGTCTGGAAAGCTGCCTTC
 @M00784:58:000000000-B5H3F:1:1101:21077:1228 2:N:0:143
 NGACTACCAGGGTTTCTAATCCTGTTTGCTCCCCACGCTTTCGCGCCTCAGCGTCAGTTACTGTCCAGCAATCCGCCTTCGCCACTGGTGTTCCTCCGTA
 
-sed -i -e 's/.fa_/_/' 16s-output/combined_seqs.fna
+#making backup directory 
+mkdir -p /users/7/wrig1125/wrig1125_project_1/dataset1/backup
+cp /users/7/wrig1125/wrig1125_project_1/dataset1/*.fastq /users/7/wrig1125/wrig1125_project_1/dataset1/backup/
+#make backup files using a loop 
+for file in /users/7/wrig1125/wrig1125_project_1/dataset1/*.fastq; do
+    cp "$file" "${file%.fastq}_backup.fastq"
+done
+#checked my home directory to make sure ... all is good fam! 
+
+sed -i -e 's/.fa_/_/' ~/wrig1125_project_1/dataset1/*.fastq
+#stream editor to edit and transform text
+# We can remove them manually later but it's easiest to clean them out of the seqs file now
+# Note: this uses the bash command sed, to replace .fa_ with _ in every line.
+
 
 
 
