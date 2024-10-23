@@ -42,3 +42,33 @@ NTAAGAATAGACATTTCCATCATACTTCCGCCACTTTTACTATGCTTACTTCCGCCGTAAAAATCAAAACAATACGCGGC
 # run through BLAST 
 # got --> no significant similarity found 
 # determine its a WGS because marker genes are better catagorized, which would yeild a similarity of some sort
+
+#question 3
+module load fastqc
+mkdir wrig1125_project_1
+#made personal directory for the marker gene dataset ( dataset1 ) to be in my home directory 
+
+cp -r /home/knightsd/public/mice5035/project1/046/dataset1 /users/7/wrig1125/wrig1125_project_1
+#copy and moved dataset1 contents to my home directory folder
+
+fastqc -o 16s-fastqc /home/knightsd/public/imp/16s-shallow/*.fastq.gz
+
+module load python/3.6.3
+#load in shi7
+python3 /home/knightsd/public/shi7/shi7.py -h
+#command interface for shi7 
+# Before running the quality filtering
+# first use the -h flag to print out the instructions for shi7.py/. there are many different settings that can be specified using certain command-line "flags". ex, if you do not want to convert the output data to FASTA format (from FASTQ format), you can run shi7 with the flag --convert_fasta False.
+
+#changed directory to dataset1 ( the marker gene ) so I can start 
+cd /home/knightsd/public/mice5035/project1/046/dataset1
+
+python shi7.py -i 
+
+
+
+
+
+
+
+
