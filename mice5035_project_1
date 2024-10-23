@@ -7,6 +7,7 @@ cd /home/knightsd/public/mice5035/project1/046/dataset1
 #printed out the fastq files
 # make sure to do work in home directory and not these 
 
+#question_2
 head -n 2 sample_001_L001_R1_001.fastq
 #lists the first two lines of the file
 # @M00784:58:000000000-B5H3F:1:1101:14224:1213 1:N:0:143
@@ -14,7 +15,8 @@ head -n 2 sample_001_L001_R1_001.fastq
 #the second line represents the first DNA sequence
 #put nucleotide sequence into BLAST 
 # got --> MN96 16S ribosomal RNA gene, partial sequence
-#question_2
+#16S ribosomal DNA is a marker gene
+
 cd .. 
 #backed out of dataset1 
 cd dataset2 
@@ -24,15 +26,19 @@ head -n 2 sample_001_L001_R1_001.fastq
 # lists first two lines, second line is the first DNA sequence 
 @SN1073:641:H735LBCXY:1:1103:7567:2818 1:N:0:GTAATCTC+ACGACAGG
 CTCGCGGATAATCATCTGACGGGCGTATGTCCGCGCCTCGTAGGGATAGCGGTCGAAATTGCACACCACGCTGTCCACCTGCAACACTTGGTTGATGTTCC
+#nucleotide put into BLAST 
+# got --> BFG-554 chromosome, complete genome
+# determined its a WGS because the chromosome is a singular part of WGS
 
 cd .. 
 #back out of dataset2 
 cd dataset3 
 ls 
 #change directory to dataset3 and list its files 
-head -n 2 sample_001_L001_R1_001.fastq
-# lists
+head -n 4 sample_001_L001_R1_001.fastq
+# lists first four lines, secondis the first DNA sequence 
 @D00635:120:c90kvanxx:5:2110:1227:1959 1:N:0:GTAGAGGA+GCGTAAGA
 NTAAGAATAGACATTTCCATCATACTTCCGCCACTTTTACTATGCTTACTTCCGCCGTAAAAATCAAAACAATACGCGGCATATCCGCTCATAGCAAAGCTTTTTCCATTTAACGTCTTACAAAGC
-
-
+# run through BLAST 
+# got --> no significant similarity found 
+# determine its a WGS because marker genes are better catagorized, which would yeild a similarity of some sort
