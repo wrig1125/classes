@@ -51,7 +51,15 @@ mkdir wrig1125_project_1
 cp -r /home/knightsd/public/mice5035/project1/046/dataset1 /users/7/wrig1125/wrig1125_project_1
 #copy and moved dataset1 contents to my home directory folder
 
-fastqc -o 16s-fastqc /home/knightsd/public/imp/16s-shallow/*.fastq.gz
+cd wrig1125_project_1/dataset1
+#changed working directory 
+
+#wasnt working it said directory doesnt exist so I did this 
+mkdir -p wrig1125_project_1
+#made sure the directory i was making is made without any issues 
+
+fastqc -o wrig1125_project_1 /users/7/wrig1125/wrig1125_project_1/dataset1/*.fastq
+#completing analysis on my files 
 
 module load python/3.6.3
 #load in shi7
