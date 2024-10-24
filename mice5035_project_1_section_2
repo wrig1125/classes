@@ -38,7 +38,7 @@ pick_de_novo_otus.py -i /home/knightsd/public/mice5035/project1/markergenes/seqs
 biom summarize-table -i /users/7/wrig1125/16s-de-novo-97/otu_table.biom -o /users/7/wrig1125/wrig1125_project_1/otu_table_summary.txt
 
 
-
+single_rarefaction.py -i /users/7/wrig1125/wrig1125_project_1/otu_table.biom -o /users/7/wrig1125/wrig1125_project_1/otu_table_rarefied.biom -d 8000
 
 
 
