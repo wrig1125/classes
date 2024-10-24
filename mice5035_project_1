@@ -136,7 +136,8 @@ python3 /home/knightsd/public/shi7/shi7.py -i /users/7/wrig1125/wrig1125_project
 #editing the trim lenth to 35 
 
 python3 /home/knightsd/public/shi7/shi7.py -i /home/knightsd/public/mice5035/project1/049/dataset1/ -o ~/049/output_q35/ --trim_qual 35
-#this is what kt used 
+#this is what kt used but it didnt work. 
+# i figured it out, he just forgot to ad teh --trim command before the --trim_qual command
 
 cat /users/7/wrig1125/wrig1125_project_1/dataset1/wrig1125_project_1/shi7.log
 #re run with the new trim length 
