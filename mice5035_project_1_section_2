@@ -1,2 +1,44 @@
 #question 1 
-cp -r /home/knightsd/public/mice5035/project1/markergenes/ 
+cp -r /home/knightsd/public/mice5035/project1/markergenes/ /users/7/wrig1125/wrig1125_project_1
+# coping the dataset into my directory 
+
+   module load qiime/1.9.1_centos7
+   module load bowtie2
+#loading software modules 
+
+mkdir 16s-de-novo 
+#makes new directory 
+
+#restart lol 
+cd 
+mkdir 16s-de-novo-97
+cd 16s-de-novo-97
+cd mice5035
+cd tutorials/02_16s_feature_extraction
+
+cp -r /users/7/wrig1125/mice5035/tutorials/02_16s_feature_extraction/ /users/7/wrig1125/wrig1125_project_1
+# moved parameter folder into my directory 
+
+cat /users/7/wrig1125/wrig1125_project_1/02_16s_feature_extraction/parameters.txt
+
+pick_de_novo_otus.py -i /home/knightsd/public/mice5035/project1/markergenes/seqs.fna -o otus_de_novo_uclust
+# worked but its for 94% 
+
+#i went into the home directory and editted the file to 0.97 and not 0.94
+
+
+\pick_de_novo_otus.py -i /home/knightsd/public/mice5035/project1/markergenes/seqs.fna -o /home/wrig1125/16s-de-novo-97/ -p /users/7/wrig1125/wrig1125_project_1/02_16s_feature_extraction/parameters.txt
+#didnt work 
+
+
+pick_de_novo_otus.py -i /home/knightsd/public/mice5035/project1/markergenes/seqs.fna -o /users/7/wrig1125/16s-de-novo-97/ -p /users/7/wrig1125/wrig1125_project_1/02_16s_feature_extraction/parameters.txt -f
+#WORKED LOL YESSSS FINALLY 
+
+#question 2
+biom summarize-table -i /users/7/wrig1125/16s-de-novo-97/otu_table.biom -o /users/7/wrig1125/wrig1125_project_1/otu_table_summary.txt
+
+
+
+
+
+
