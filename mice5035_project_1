@@ -48,7 +48,7 @@ module load fastqc
 mkdir wrig1125_project_1
 #made personal directory for the marker gene dataset ( dataset1 ) to be in my home directory 
 
-cp -r /home/knightsd/public/mice5035/project1/046/dataset1 /users/7/wrig1125/wrig1125_project_1
+cp -r /home/knightsd/public/mice5035/project1/046 /users/7/wrig1125/wrig1125_project_1
 #copy and moved dataset1 contents to my home directory folder
 
 cd wrig1125_project_1/dataset1
@@ -120,6 +120,26 @@ sed -i -e 's/.fa_/_/' ~/wrig1125_project_1/dataset1/*.fastq
 # We can remove them manually later but it's easiest to clean them out of the seqs file now
 # Note: this uses the bash command sed, to replace .fa_ with _ in every line.
 
+less /users/7/wrig1125/wrig1125_project_1/dataset1/wrig1125_project_1 /shi7.log
+
+
+python3 /home/knightsd/public/shi7/shi7.py -i /home/knightsd/public/mice5035/project1/049/dataset1/ -o ~/049/output/
+
+cp -r /home/knightsd/public/mice5035/project1/049 /users/7/wrig1125/wrig1125_project_1
+#copied my number into my home directory 
+
+cat ~/049/output/shi7.log
+#reading the file, question 3, b 
+
+# part d 
+python3 /home/knightsd/public/shi7/shi7.py -i /users/7/wrig1125/wrig1125_project_1/dataset1 -o wrig1125_project_1 --trim True -trim_q 35 --combine_fasta False
+#editing the trim lenth to 35 
+
+python3 /home/knightsd/public/shi7/shi7.py -i /home/knightsd/public/mice5035/project1/049/dataset1/ -o ~/049/output_q35/ --trim_qual 35
+#this is what kt used 
+
+cat /users/7/wrig1125/wrig1125_project_1/dataset1/wrig1125_project_1/shi7.log
+#re run with the new trim length 
 
 
 
