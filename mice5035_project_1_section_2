@@ -76,11 +76,10 @@ make_emperor.py -i /users/7/wrig1125/16s-de-novo-97/unweighted_unifrac_otu_table
 
 alpha_rarefaction.py \
   -i /users/7/wrig1125/16s-de-novo-97/otu_table_filtered.biom \
-  -m /home/knightsd/public/mice5035/project1/XXX/map_XXX.txt \
+  -m /home/knightsd/public/mice5035/project1/049/map_049.txt \
   -o /users/7/wrig1125/16s-de-novo-97/rarefaction_curves \
   -t /users/7/wrig1125/16s-de-novo-97/rep_set.tre \
-  --steps 4 \
-  --min_depth 10 \
-  --max_depth 1000 \
-  --format pdf
+  --num_steps 4 \
+  --min_rare_depth 10 \
+  --max_rare_depth 1000 \
 
