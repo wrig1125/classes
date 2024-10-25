@@ -37,8 +37,50 @@ pick_de_novo_otus.py -i /home/knightsd/public/mice5035/project1/markergenes/seqs
 #question 2
 biom summarize-table -i /users/7/wrig1125/16s-de-novo-97/otu_table.biom -o /users/7/wrig1125/wrig1125_project_1/otu_table_summary.txt
 
+#question 6 
+single_rarefaction.py -i /users/7/wrig1125/16s-de-novo-97/otu_table.biom -o /users/7/wrig1125/wrig1125_project_1/otu_table_rarefied.biom -d 2000
 
-single_rarefaction.py -i /users/7/wrig1125/wrig1125_project_1/otu_table.biom -o /users/7/wrig1125/wrig1125_project_1/otu_table_rarefied.biom -d 8000
+#question 7
+filter_otus_from_otu_table.py -i /users/7/wrig1125/16s-de-novo-97/otu_table.biom -o /users/7/wrig1125/16s-de-novo-97/otu_table_filtered.biom --min_samples 10
+
+#question 8 
+biom summarize-table -i /users/7/wrig1125/16s-de-novo-97/otu_table_filtered.biom -o /users/7/wrig1125/16s-de-novo-97/otu_table_filtered_summary.txt
+
+cat /users/7/wrig1125/16s-de-novo-97/otu_table_filtered_summary.txt
+
+#question 9
+alpha_diversity.py -i /users/7/wrig1125/16s-de-novo-97/otu_table_filtered.biom -m chao1,observed_otus,shannon,simpson -o /users/7/wrig1125/16s-de-novo-97/alpha_diversity.txt
+
+beta_diversity.py -i /users/7/wrig1125/16s-de-novo-97/otu_table_filtered.biom -m weighted_unifrac -o /users/7/wrig1125/16s-de-novo-97/beta_diversity/ -t /users/7/wrig1125/16s-de-novo-97/rep_set.tre
 
 
+beta_diversity_plots.py -i /users/7/wrig1125/16s-de-novo-97/beta_diversity/weighted_unifrac_distance_matrix.txt -m /users/7/wrig1125/wrig1125_project_1/049 -o /users/7/wrig1125/16s-de-novo-97/beta_diversity_plots/ --pca --3d
+#didnt work 
+
+#from tuturial 2 
+#collapsing to 3 dimensions 
+principal_coordinates.py -i /users/7/wrig1125/16s-de-novo-97/beta_diversity/weighted_unifrac_otu_table_filtered.txt -o /users/7/wrig1125/16s-de-novo-97/weighted_unifrac_otu_table_filtered_pc.txt
+
+
+
+make_emperor.py -i /users/7/wrig1125/16s-de-novo-97/weighted_unifrac_otu_table_filtered_pc.txt -m /home/knightsd/public/mice5035/project1/049/map_049.txt -o 3dplots-weighted-unifrac
+
+#question 11 
+# Calculate Unweighted UniFrac distance
+beta_diversity.py -i /users/7/wrig1125/16s-de-novo-97/otu_table_filtered.biom -m unweighted_unifrac -o /users/7/wrig1125/16s-de-novo-97/beta_diversity/ -t /users/7/wrig1125/16s-de-novo-97/rep_set.tre
+
+# Run PCA
+principal_coordinates.py -i /users/7/wrig1125/16s-de-novo-97/beta_diversity/unweighted_unifrac_otu_table_filtered.txt -o /users/7/wrig1125/16s-de-novo-97/unweighted_unifrac_otu_table_filtered_pc.txt# Create 3D plots
+
+make_emperor.py -i /users/7/wrig1125/16s-de-novo-97/unweighted_unifrac_otu_table_filtered_pc.txt -m /home/knightsd/public/mice5035/project1/049/map_049.txt -o 3dplots-unweighted-unifrac
+
+alpha_rarefaction.py \
+  -i /users/7/wrig1125/16s-de-novo-97/otu_table_filtered.biom \
+  -m /home/knightsd/public/mice5035/project1/XXX/map_XXX.txt \
+  -o /users/7/wrig1125/16s-de-novo-97/rarefaction_curves \
+  -t /users/7/wrig1125/16s-de-novo-97/rep_set.tre \
+  --steps 4 \
+  --min_depth 10 \
+  --max_depth 1000 \
+  --format pdf
 
