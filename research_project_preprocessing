@@ -46,3 +46,10 @@ mv /users/7/wrig1125/preprocessing_data/otus/ninja/ninja_otutable.biom /users/7/
 biom convert -i /users/7/wrig1125/preprocessing_data/otus/ninja/otutable.biom -o /users/7/wrig1125/preprocessing_data/otus/otu_table.txt --to-tsv
 
 head otus/otu_table.txt | cut -f 1-10
+
+#rarefy and filter OTU table
+single_rarefaction.py -i otus/ninja/otutable.biom -d 140 -o otus/otu_table_rarefied.biom
+
+
+
+
