@@ -1,3 +1,4 @@
+srun -N 1 --ntasks-per-node=2 --mem-per-cpu=8gb -t 02:00:00 -p interactive --pty bash
 #tutorial 1 = preprocessing 
 module load fastqc
 mkdir preprocessing_data
@@ -34,10 +35,13 @@ less preprocessing_data/trimmed_reads/shi7.log
 
 cd preprocessing_data/16s-closed-ref/
 # new working directory 
-cat ../trimmed_reads/*
 
 
 grep ">" /users/7/wrig1125/preprocessing_data/trimmed_reads/*.fna | sort | uniq | wc
+#output
+6551389: The number of unique header lines in the FASTA files.
+9892493: The total number of words in the unique headers.
+790427502: The total number of characters in the unique headers.
 
 ls /users/7/wrig1125/preprocessing_data/trimmed_reads/*.fna
 #verifying the files are there 
@@ -46,7 +50,18 @@ ls /users/7/wrig1125/preprocessing_data/trimmed_reads/*.fna
 #this code below didnt work and i am so mad ugh
 python /home/knightsd/public/mice5035/NINJA-OPS-1.5.1/bin/ninja.py -i /users/7/wrig1125/preprocessing_data/trimmed_reads/*.fna -o otus -p 4 -z -m normal
 
-#ran this and it worked 
+#trying this 
+ls /users/7/wrig1125/preprocessing_data/trimmed_reads/*.fna | grep -v combined_seqs.fna | xargs cat > /users/7/wrig1125/preprocessing_data/trimmed_reads/combined_seqs.fna
+
+mv /users/7/wrig1125/preprocessing_data/trimmed_reads/combined_seqs.fna /users/7/wrig1125/preprocessing_data/
+cat /users/7/wrig1125/preprocessing_data/trimmed_reads/*.fna > /users/7/wrig1125/preprocessing_data/trimmed_reads/combined_seqs.fna
+mv /users/7/wrig1125/preprocessing_data/combined_seqs.fna /users/7/wrig1125/preprocessing_data/trimmed_reads/
+
+find /users/7/wrig1125/preprocessing_data/trimmed_reads/ -name "*.fna" ! -name "combined_seqs.fna" -exec cat {} + > /users/7/wrig1125/preprocessing_data/trimmed_reads/combined_seqs.fna
+ls -lh /users/7/wrig1125/preprocessing_data/trimmed_reads/combined_seqs.fna
+#YAY THIS WORKED 
+
+#ran this and it worked ( i used this before the one above and i lowkey like the one above better, sorry ) 
 for file in /users/7/wrig1125/preprocessing_data/trimmed_reads/*.fna; do
     python /home/knightsd/public/mice5035/NINJA-OPS-1.5.1/bin/ninja.py -i "$file" -o /users/7/wrig1125/preprocessing_data/otus/ninja -p 4 -z -m normal
 done
