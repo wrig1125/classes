@@ -13,7 +13,14 @@ module load python/3.6.3
 python3 /home/knightsd/public/shi7/shi7.py -h
 #command interface for shi7 because this pathway is where it is located 
 
-python3 /home/knightsd/public/shi7/shi7.py -i /users/7/wrig1125/project/host_removed/ -o preprocessing_data/trimmed_reads --filter_qual 30 --combine_fasta false
+python3 /home/knightsd/public/shi7/shi7.py -i /users/7/wrig1125/project/host_removed/ -o preprocessing_data/trimmed_reads -filter_l 100 --combine_fasta False
+#trimmed reads to needing at least 100 nucleotides
+
+python3 /home/knightsd/public/shi7/shi7.py -i /users/7/wrig1125/project/host_removed/ -o preprocessing_data/trimmed_reads --filter_qual 30
+#quality reads to 30 or above
+
+
+
 #making sure it worked 
 ls -l preprocessing_data/trimmed_reads 
 #SUCCESS YAY
@@ -25,7 +32,12 @@ less preprocessing_data/trimmed_reads/shi7.log
    module load qiime/1.9.1_centos7
    module load bowtie2
 
-grep ">" /users/7/wrig1125/preprocessing_data/trimmed_reads/*.fna | cut -f 1 -d "_" | sort | uniq | wc
+cd preprocessing_data/16s-closed-ref/
+# new working directory 
+cat ../trimmed_reads/*
+
+
+grep ">" /users/7/wrig1125/preprocessing_data/trimmed_reads/*.fna | sort | uniq | wc
 
 ls /users/7/wrig1125/preprocessing_data/trimmed_reads/*.fna
 #verifying the files are there 
