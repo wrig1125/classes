@@ -1,4 +1,4 @@
-#preprocessing 
+#tutorial 1 = preprocessing 
 module load fastqc
 mkdir preprocessing_data
 
@@ -17,3 +17,32 @@ python3 /home/knightsd/public/shi7/shi7.py -i /users/7/wrig1125/project/host_rem
 #making sure it worked 
 ls -l preprocessing_data/trimmed_reads 
 #SUCCESS YAY
+
+#looking inside the files 
+less preprocessing_data/trimmed_reads/shi7.log
+
+#tutorial 2 = 16S feature extraction 
+   module load qiime/1.9.1_centos7
+   module load bowtie2
+
+grep ">" /users/7/wrig1125/preprocessing_data/trimmed_reads/*.fna | cut -f 1 -d "_" | sort | uniq | wc
+
+ls /users/7/wrig1125/preprocessing_data/trimmed_reads/*.fna
+#verifying the files are there 
+
+#OTU CLOSED reference picking ( most similar ) 
+#this code below didnt work and i am so mad ugh
+python /home/knightsd/public/mice5035/NINJA-OPS-1.5.1/bin/ninja.py -i /users/7/wrig1125/preprocessing_data/trimmed_reads/*.fna -o otus -p 4 -z -m normal
+
+#ran this and it worked 
+for file in /users/7/wrig1125/preprocessing_data/trimmed_reads/*.fna; do
+    python /home/knightsd/public/mice5035/NINJA-OPS-1.5.1/bin/ninja.py -i "$file" -o /users/7/wrig1125/preprocessing_data/otus/ninja -p 4 -z -m normal
+done
+
+#rename folder for consistency with QIIME commands 
+mv /users/7/wrig1125/preprocessing_data/otus/ninja/ninja_otutable.biom /users/7/wrig1125/preprocessing_data/otus/ninja/otutable.biom
+
+#text base version of OTU
+biom convert -i /users/7/wrig1125/preprocessing_data/otus/ninja/otutable.biom -o /users/7/wrig1125/preprocessing_data/otus/otu_table.txt --to-tsv
+
+head otus/otu_table.txt | cut -f 1-10
