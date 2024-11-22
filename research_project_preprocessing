@@ -66,6 +66,22 @@ for file in /users/7/wrig1125/preprocessing_data/trimmed_reads/*.fna; do
     python /home/knightsd/public/mice5035/NINJA-OPS-1.5.1/bin/ninja.py -i "$file" -o /users/7/wrig1125/preprocessing_data/otus/ninja -p 4 -z -m normal
 done
 
+python /home/knightsd/public/mice5035/NINJA-OPS-1.5.1/bin/ninja.py -i /users/7/wrig1125/preprocessing_data/trimmed_reads/combined_seqs.fna -o /users/7/wrig1125/preprocessing_data/otus -p 4 -z -m normal
+#OUTPUT 
+Total OTUs available to pick from: 99322
+Number of unique samples: 1, max reads: 3198495
+Total chimeric alignments: 59
+Total reads expanded: 4388
+Run complete.
+NINJA-OPS parse time: 3.5479735010303557
+wrig1125@acn01 [~/preprocessing_data/16s-closed-ref] % 
+
+ls /users/7/wrig1125/preprocessing_data/otus
+#made sure the table was in there
+
+
+
+
 #rename folder for consistency with QIIME commands 
 mv /users/7/wrig1125/preprocessing_data/otus/ninja/ninja_otutable.biom /users/7/wrig1125/preprocessing_data/otus/ninja/otutable.biom
 
