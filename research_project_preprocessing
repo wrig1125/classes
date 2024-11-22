@@ -1,1 +1,14 @@
+#preprocessing 
+module load fastqc
+mkdir preprocessing_data
 
+#copy direcotry contents and moved to mine
+cp -r /home/knightsd/public/mice5035/2024/host_removed/ /users/7/wrig1125/project/
+
+fastqc -o preprocessing_data /users/7/wrig1125/project/host_removed/*.fastq.gz
+#quality is around 30 
+
+module load python/3.6.3
+#load in shi7
+python3 /home/knightsd/public/shi7/shi7.py -h
+#command interface for shi7 because this pathway is where it is located 
