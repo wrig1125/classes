@@ -42,6 +42,7 @@ done
 #rename folder for consistency with QIIME commands 
 mv /users/7/wrig1125/preprocessing_data/otus/ninja/ninja_otutable.biom /users/7/wrig1125/preprocessing_data/otus/ninja/otutable.biom
 
+#NONE OF THIS IS WORKING HELP 
 #text base version of OTU
 biom convert -i /users/7/wrig1125/preprocessing_data/otus/ninja/otutable.biom -o /users/7/wrig1125/preprocessing_data/otus/otu_table.txt --to-tsv
 
