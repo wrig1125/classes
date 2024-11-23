@@ -79,17 +79,48 @@ wrig1125@acn01 [~/preprocessing_data/16s-closed-ref] %
 ls /users/7/wrig1125/preprocessing_data/otus
 #made sure the table was in there
 
-
-
-
 #rename folder for consistency with QIIME commands 
-mv /users/7/wrig1125/preprocessing_data/otus/ninja/ninja_otutable.biom /users/7/wrig1125/preprocessing_data/otus/ninja/otutable.biom
+mv /users/7/wrig1125/preprocessing_data/otus/ninja_otutable.biom /users/7/wrig1125/preprocessing_data/otus/otutable_2.biom
 
-#NONE OF THIS IS WORKING HELP 
-#text base version of OTU
-biom convert -i /users/7/wrig1125/preprocessing_data/otus/ninja/otutable.biom -o /users/7/wrig1125/preprocessing_data/otus/otu_table.txt --to-tsv
+biom convert -i otus/otutable_2.biom -o otus/otutable_2.txt --to-tsv
 
 head otus/otu_table.txt | cut -f 1-10
+
+wrig1125@acn01 [~/preprocessing_data] % head otus/otu_table.txt | cut -f 1-10
+# Constructed from biom file
+#OTU ID AllSamps
+813944  1.0
+752354  1.0
+580008  1.0
+571905  1.0
+567846  1.0
+535707  1.0
+516022  1.0
+484304  1.0
+
+
+biom summarize-table -i otus/otutable_2.biom -o otus/stats.txt
+head -n 30 otus/stats.txt
+
+#output 
+wrig1125@acn01 [~/preprocessing_data] % head -n 30 otus/stats.txt
+Num samples: 1
+Num observations: 2510
+Total count: 4388
+Table density (fraction of non-zero values): 1.000
+
+Counts/sample summary:
+ Min: 4388.000
+ Max: 4388.000
+ Median: 4388.000
+ Mean: 4388.000
+ Std. dev.: 0.000
+ Sample Metadata Categories: None provided
+ Observation Metadata Categories: taxonomy
+
+Counts/sample detail:
+AllSamps: 4388.000wrig1125@acn01 [~/preprocessing_data] % 
+
 
 #rarefy and filter OTU table
 single_rarefaction.py -i otus/ninja/otutable.biom -d 140 -o otus/otu_table_rarefied.biom
