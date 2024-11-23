@@ -121,10 +121,8 @@ Counts/sample summary:
 Counts/sample detail:
 AllSamps: 4388.000wrig1125@acn01 [~/preprocessing_data] % 
 
-
 #rarefy and filter OTU table
-single_rarefaction.py -i otus/ninja/otutable.biom -d 140 -o otus/otu_table_rarefied.biom
-
+single_rarefaction.py -i otus/otutable_2.biom -d 3500 -o otus/otu_table_rarefied.biom
 
 
 
