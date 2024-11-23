@@ -124,5 +124,10 @@ AllSamps: 4388.000wrig1125@acn01 [~/preprocessing_data] %
 #rarefy and filter OTU table
 single_rarefaction.py -i otus/otutable_2.biom -d 3500 -o otus/otu_table_rarefied.biom
 
+#said i only had one sample so i had to rename them using the command below
+awk '{if(NR%2==1) {print ">sample" int(NR/2)+1 "_" substr($0, 2)} else {print $0}}' combined_seqs.fna > combined_seq_with_samples.fna
 
+#rerunning NINJA
+python /home/knightsd/public/mice5035/NINJA-OPS-1.5.1/bin/ninja.py -i ~/preprocessing_data/trimmed_reads/combined_seq_with_samples.fna -o ~/preprocessing_data/otus -p 4 -z -m normal
 
+#STILL SAYS I HAVE ONE SAMPLE UGH
