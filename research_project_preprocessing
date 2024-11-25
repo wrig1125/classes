@@ -131,3 +131,35 @@ awk '{if(NR%2==1) {print ">sample" int(NR/2)+1 "_" substr($0, 2)} else {print $0
 python /home/knightsd/public/mice5035/NINJA-OPS-1.5.1/bin/ninja.py -i ~/preprocessing_data/trimmed_reads/combined_seq_with_samples.fna -o ~/preprocessing_data/otus -p 4 -z -m normal
 
 #STILL SAYS I HAVE ONE SAMPLE UGH
+
+
+#LMAO YOU DONT HAVE TO DO THIS ANYWAYS IM CRYING NO WAY ...
+#okay anyways im moving on i stg 
+#tutorial 3 
+   module load qiime/1.9.1_centos7
+   module load kraken
+   module load bowtie2
+   module load python/3.6.3
+
+mkdir wgs_kraken 
+mkdir kraken_out 
+
+cp -r ~/preprocessing_data/trimmed_reads/*.fna ~/preprocessing_data/wgs_kraken/
+
+#running kraken 
+# loop through every .fna file. Run kraken2 on it.
+for f in wgs-output/combined_seq_with_samples.fna; do echo $f; time kraken2 --db /home/knightsd/public/minikraken2_v1_8GB --use-mpa-style --output tmp --report kraken-out/`basename $f .fna`.txt --use-names $f; done
+
+ls wgs_kraken/*.fna
+#making sure its in this direcotry , it is 
+
+kraken2 --db /home/knightsd/public/minikraken2_v1_8GB --use-mpa-style --output tmp --report kraken-out/test_file.txt --use-names wgs-output/Dance.fa.fna
+
+head -n 20 wgs_kraken/Dance.fa.fna
+
+# just an example of running kraken2 on one individual file:
+kraken2 --db /home/knightsd/public/minikraken2_v1_8GB --use-mpa-style --output tmp --report kraken-out/Dance.txt --use-names wgs-output/Dance.fa.fna
+
+for f in trimmed_reads/*.fa.fna; do mv $f trimmed_reads/`basename $f .fa.fna`.fna; done
+# loop through every .fna file. Run kraken2 on it.
+for f in trimmed_reads/*.fna; do echo $f; time kraken2 --db /home/knightsd/public/minikraken2_v1_8GB --use-mpa-style --output tmp --report kraken-out/`basename $f .fna`.txt --use-names $f; done
