@@ -186,9 +186,12 @@ beta_diversity.py -i taxon_tables/taxa_table_L7_rarefied.biom -o beta -m "bray_c
 principal_coordinates.py -i beta/bray_curtis_taxa_table_L7_rarefied.txt -o beta/bray_curtis_taxa_table_L7_final_pc.txt
 principal_coordinates.py -i beta/binary_jaccard_taxa_table_L7_rarefied.txt -o beta/binary_jaccard_taxa_table_L7_final_pc.txt
 
+#getting the metadata mapping file 
+cp /home/knightsd/public/mice5035/2024/MICE5035_2024_Fall_class_metadata-v1.txt ~/preprocessing_data/
+
 #make emperor plots
-make_emperor.py -i beta/bray_curtis_taxa_table_L7_final_pc.txt -m ../../../data/imp/map.txt -o 3dplots-bray-curtis
-make_emperor.py -i beta/binary_jaccard_taxa_table_L7_final_pc.txt -m ../../../data/imp/map.txt -o 3dplots-binary-jaccard
+make_emperor.py -i beta/bray_curtis_taxa_table_L7_final_pc.txt -m project_metadata.txt -o 3dplots-bray-curtis
+make_emperor.py -i beta/binary_jaccard_taxa_table_L7_final_pc.txt -m project_metadata.txt -o 3dplots-binary-jaccard
 
 
 
