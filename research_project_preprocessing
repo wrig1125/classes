@@ -136,10 +136,10 @@ python /home/knightsd/public/mice5035/NINJA-OPS-1.5.1/bin/ninja.py -i ~/preproce
 #LMAO YOU DONT HAVE TO DO THIS ANYWAYS IM CRYING NO WAY ...
 #okay anyways im moving on i stg 
 #tutorial 3 
-   module load qiime/1.9.1_centos7
-   module load kraken
-   module load bowtie2
-   module load python/3.6.3
+module load qiime/1.9.1_centos7
+module load kraken
+module load bowtie2
+module load python/3.6.3
 
 mkdir wgs_kraken 
 mkdir kraken_out 
@@ -163,3 +163,26 @@ kraken2 --db /home/knightsd/public/minikraken2_v1_8GB --use-mpa-style --output t
 for f in trimmed_reads/*.fa.fna; do mv $f trimmed_reads/`basename $f .fa.fna`.fna; done
 # loop through every .fna file. Run kraken2 on it.
 for f in trimmed_reads/*.fna; do echo $f; time kraken2 --db /home/knightsd/public/minikraken2_v1_8GB --use-mpa-style --output tmp --report kraken-out/`basename $f .fna`.txt --use-names $f; done
+
+# Now we have a single output file per sample;
+# we can merge these using the script kraken2table.py in this repo:
+wget https://raw.githubusercontent.com/danknights/mice5035/master/scripts/kraken2table.py -O kraken2table.py
+python kraken2table.py kraken-out/*.txt taxon_tables
+
+for f in taxon_tables/*.txt; do echo $f; biom convert -i $f --to-json -o `dirname $f`/`basename $f .txt`.biom --process-obs-metadata taxonomy; done
+
+#checking for what depth i should rarefy 
+biom summarize-table -i taxon_tables/taxa_table_L7.biom -o stats.txt
+less stats.txt
+
+#im going to choose to rarefy at 20,000 depth 
+single_rarefaction.py -i taxon_tables/taxa_table_L7.biom -d 20000 -o taxon_tables/taxa_table_L7_rarefied.biom
+
+#run alpha and beta diversity analysis without tree-based metrics 
+alpha_diversity.py -m "chao1,observed_otus,shannon" -i taxon_tables/taxa_table_L7_final.biom -o alpha-diversity.txt
+beta_diversity.py -i taxon_tables/taxa_table_L7_final.biom -o beta -m "bray_curtis,binary_jaccard"
+
+
+
+
+
