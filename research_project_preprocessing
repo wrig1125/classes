@@ -179,8 +179,18 @@ less stats.txt
 single_rarefaction.py -i taxon_tables/taxa_table_L7.biom -d 20000 -o taxon_tables/taxa_table_L7_rarefied.biom
 
 #run alpha and beta diversity analysis without tree-based metrics 
-alpha_diversity.py -m "chao1,observed_otus,shannon" -i taxon_tables/taxa_table_L7_final.biom -o alpha-diversity.txt
-beta_diversity.py -i taxon_tables/taxa_table_L7_final.biom -o beta -m "bray_curtis,binary_jaccard"
+alpha_diversity.py -m "chao1,observed_otus,shannon" -i taxon_tables/taxa_table_L7_rarefied.biom -o alpha-diversity.txt
+beta_diversity.py -i taxon_tables/taxa_table_L7_rarefied.biom -o beta -m "bray_curtis,binary_jaccard"
+
+#run principle coordinates and 3D plots 
+principal_coordinates.py -i beta/bray_curtis_taxa_table_L7_rarefied.txt -o beta/bray_curtis_taxa_table_L7_final_pc.txt
+principal_coordinates.py -i beta/binary_jaccard_taxa_table_L7_rarefied.txt -o beta/binary_jaccard_taxa_table_L7_final_pc.txt
+
+#make emperor plots
+make_emperor.py -i beta/bray_curtis_taxa_table_L7_final_pc.txt -m ../../../data/imp/map.txt -o 3dplots-bray-curtis
+make_emperor.py -i beta/binary_jaccard_taxa_table_L7_final_pc.txt -m ../../../data/imp/map.txt -o 3dplots-binary-jaccard
+
+
 
 
 
