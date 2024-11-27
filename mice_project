@@ -1,0 +1,1000 @@
+4                          Low                                         No
+5                         High                                         No
+6                          Low                                         No
+                                Eating_schedule                Primary_drinking_water_source
+1                3 _or fewer_ square meals only                                    Tap water
+2                3 _or fewer_ square meals only Filtered water bottled water or spring water
+3 More grazing/snacks/alternative schedule etc.                                    Tap water
+4                3 _or fewer_ square meals only Filtered water bottled water or spring water
+5 More grazing/snacks/alternative schedule etc. Filtered water bottled water or spring water
+6                3 _or fewer_ square meals only                                    Tap water
+  Number_of_restaurant_meals_in_the_last_week Number_of_restaurant_meals_in_the_last_week_Category
+1                                           2                                                 High
+2                                          13                                                 High
+3                                           1                                                  Low
+4                                           1                                                  Low
+5                                           1                                                  Low
+6                                           5                                                 High
+  Work_hours_or_week Work_hours_or_week_Category Take_public_transport_at_least_once_or_month
+1                 50                        High                                           No
+2                  0                         Low                                          Yes
+3                  0                         Low                                           No
+4                  0                         Low                                          Yes
+5                 10                         Low                                           No
+6                 30                        High                                          Yes
+  Any_known_gastro_disease Currently_taking_antibiotics
+1                     <NA>                           No
+2                       No                           No
+3                      Yes                           No
+4                       No                           No
+5                       No                           No
+6                      Yes                           No
+  What_types_of_food_do_you_usually_not_finish How_often_do_you_shower_or_bathe_per_week
+1                         Desserts fried chips                                         5
+2                                         Rice                                         2
+3                                                                                      8
+4                                                                                      7
+5                                                                                      4
+6                                         <NA>                                         4
+  How_often_do_you_shower_or_bathe_per_week_Category Known_allergies Largest_meal_of_the_day
+1                                                Low              No                   Lunch
+2                                                Low              No                   Lunch
+3                                               High              No                  Dinner
+4                                               High              No                  Dinner
+5                                                Low             Yes                  Dinner
+6                                                Low              No               Breakfast
+  Intermittent_fasting_within_the_last_month Number_of_meals_per_day
+1                                  Sometimes                       3
+2                                  Sometimes                       2
+3                                      Never                       3
+4                                      Never                       3
+5                                      Never                       2
+6                                  Sometimes                      4+
+  Number_of_meals_per_day_Category Frequency_of_bowel_movements
+1                             High                    Every day
+2                              Low                    Every day
+3                             High                    Every day
+4                             High                    Every day
+5                              Low                    Every day
+6                             High                    Every day
+  Self.reported_perceived_stress_or_anxiety_level
+1                                               1
+2                                               3
+3                                               4
+4                                               2
+5                                               3
+6                                               2
+  Self.reported_perceived_stress_or_anxiety_level_Category
+1                                                      Low
+2                                                     High
+3                                                     High
+4                                                      Low
+5                                                     High
+6                                                      Low
+> str(combined_data)
+Error: object 'combined_data' not found
+> metadata <- read.delim("Desktop/mice_project/project_metadata.txt", header = TRUE, sep = "\t")
+> str(metadata)
+'data.frame':	48 obs. of  68 variables:
+ $ X.SampleID                                                                       : chr  "Glint" "Agile" "Amber " "Apple" ...
+ $ Sample.quality.notes                                                             : chr  "" "Low mass and 260-230" "" "Low mass and 260-230" ...
+ $ Special_diet_type                                                                : chr  "Omnivore" "Omnivore" "None" "Omnivore" ...
+ $ Vegetarian                                                                       : chr  "No" "No" "No" "No" ...
+ $ Servings_of_non.fish_meat_per_week                                               : int  3 10 1 10 7 10 1 0 10 7 ...
+ $ Servings_of_non.fish_meat_per_week_Category                                      : chr  "Low" "High" "Low" "High" ...
+ $ Servings_of_seafood_per_week                                                     : int  0 1 3 0 0 1 0 0 2 1 ...
+ $ Servings_of_seafood_per_week_Category                                            : chr  "Low" "High" "High" "Low" ...
+ $ Types_of_fruits_eaten_in_a_typical_day                                           : int  1 1 2 3 0 2 3 2 1 2 ...
+ $ Types_of_fruits_eaten_in_a_typical_day_Category                                  : chr  "Low" "Low" "High" "High" ...
+ $ Types_of_vegetables_or_legumes_eaten_in_a_typical_day                            : int  1 1 4 6 0 3 5 5 3 3 ...
+ $ Types_of_vegetables_or_legumes_eaten_in_a_typical_day_Category                   : chr  "Low" "Low" "High" "High" ...
+ $ Servings_of_whole_grains_fruits_and_vegetables_per_day                           : int  3 2 3 5 1 3 5 3 2 1 ...
+ $ Servings_of_whole_grains_fruits_and_vegetables_per_day_Category                  : chr  "High" "Low" "High" "High" ...
+ $ Servings_of_alcohol_per_day_on_average                                           : int  0 0 0 0 0 0 0 0 0 1 ...
+ $ Servings_of_alcohol_per_day_on_average_Category                                  : chr  "High" "High" "High" "High" ...
+ $ Smoke_exposure                                                                   : chr  "Yes" "Yes" "No" "No" ...
+ $ Vaping_exposure                                                                  : chr  "Yes" "No" "No" "No" ...
+ $ Servings_of_caffeine_per_day_on_average                                          : int  1 0 5 1 0 4 1 0 1 4 ...
+ $ Servings_of_caffeine_per_day_on_average_Category                                 : chr  "High" "Low" "High" "High" ...
+ $ Servings_of_fermented_foods_in_last_week                                         : int  1 1 7 0 0 0 7 0 1 0 ...
+ $ Servings_of_fermented_foods_in_last_week_Category                                : chr  "High" "High" "High" "Low" ...
+ $ Servings_of_spicy_foods_in_a_day                                                 : int  2 1 0 0 1 3 1 0 2 2 ...
+ $ Servings_of_spicy_foods_in_a_day_Category                                        : chr  "High" "High" "Low" "Low" ...
+ $ Servings_of_dairy__animal_milk__per_day__serving_is_around_a_cup_or_8oz_         : int  1 1 0 1 0 1 1 1 2 0 ...
+ $ Servings_of_dairy__animal_milk__per_day__serving_is_around_a_cup_or_8oz__Category: chr  "High" "High" "Low" "High" ...
+ $ Servings_of_highly_processed_foods_in_a_day                                      : int  1 10 3 1 3 1 3 3 1 1 ...
+ $ Servings_of_highly_processed_foods_in_a_day_Category                             : chr  "Low" "High" "High" "Low" ...
+ $ Fraction_of_diet_that_is_organic                                                 : num  0.3 0.1 0.2 1 0 0 0.4 0.1 0.2 0.7 ...
+ $ Fraction_of_diet_that_is_organic_Category                                        : chr  "High" "Low" "High" "High" ...
+ $ Number_of_frozen_food_meals_in_the_last_week                                     : int  10 2 0 0 0 0 0 1 0 0 ...
+ $ Number_of_frozen_food_meals_in_the_last_week_Category                            : chr  "High" "High" "Low" "Low" ...
+ $ Vitamins_or_supplements_or_probiotics                                            : chr  "No" "No" "Yes" "No" ...
+ $ Vitamin_or_supplement_or_probiotic_description__optional_                        : chr  "" "" "Iron" "" ...
+ $ Hours_of_sleep                                                                   : int  7 7 7 8 7 8 8 8 6 7 ...
+ $ Hours_of_sleep_Category                                                          : chr  "High" "High" "High" "High" ...
+ $ Typical_bedtime                                                                  : chr  "11:30:00 PM" "12:00:00 AM" "11:00:00 PM" "10:30:00 PM" ...
+ $ Typical_bedtime_Category                                                         : chr  "Late" "Late" "Late" "Early" ...
+ $ Minutes_of_exercise                                                              : int  20 0 100 60 150 0 60 120 60 60 ...
+ $ Minutes_of_exercise_Category                                                     : chr  "Low" "Low" "High" "High" ...
+ $ Do_you_typically_exercise_before_eating                                          : chr  "No" "No" "No" "Yes" ...
+ $ Do_you_have_one_or_more_pets                                                     : chr  "No" "No" "No" "No" ...
+ $ If_you_have_pets_what_kind                                                       : chr  NA "" "" "" ...
+ $ Do_you_live_on_or_off_campus                                                     : chr  "On campus" "Off campus" "On campus" "Off campus" ...
+ $ Do_you_typically_exercise_after_eating                                           : chr  "No" "No" "Yes" "No" ...
+ $ Number_of_roommates                                                              : int  0 3 0 2 3 0 1 3 0 4 ...
+ $ Number_of_roommates_Category                                                     : chr  "Low" "High" "Low" "Low" ...
+ $ Did_you_take_antibiotics_in_the_last_month                                       : chr  "Yes" "Yes" "No" "No" ...
+ $ Eating_schedule                                                                  : chr  "3 _or fewer_ square meals only" "3 _or fewer_ square meals only" "More grazing/snacks/alternative schedule etc." "3 _or fewer_ square meals only" ...
+ $ Primary_drinking_water_source                                                    : chr  "Tap water" "Filtered water bottled water or spring water" "Tap water" "Filtered water bottled water or spring water" ...
+ $ Number_of_restaurant_meals_in_the_last_week                                      : int  2 13 1 1 1 5 2 2 3 0 ...
+ $ Number_of_restaurant_meals_in_the_last_week_Category                             : chr  "High" "High" "Low" "Low" ...
+ $ Work_hours_or_week                                                               : num  50 0 0 0 10 30 40 20 0 30 ...
+ $ Work_hours_or_week_Category                                                      : chr  "High" "Low" "Low" "Low" ...
+ $ Take_public_transport_at_least_once_or_month                                     : chr  "No" "Yes" "No" "Yes" ...
+ $ Any_known_gastro_disease                                                         : chr  NA "No" "Yes" "No" ...
+ $ Currently_taking_antibiotics                                                     : chr  "No" "No" "No" "No" ...
+ $ What_types_of_food_do_you_usually_not_finish                                     : chr  "Desserts fried chips" "Rice" "" "" ...
+ $ How_often_do_you_shower_or_bathe_per_week                                        : int  5 2 8 7 4 4 3 4 2 6 ...
+ $ How_often_do_you_shower_or_bathe_per_week_Category                               : chr  "Low" "Low" "High" "High" ...
+ $ Known_allergies                                                                  : chr  "No" "No" "No" "No" ...
+ $ Largest_meal_of_the_day                                                          : chr  "Lunch" "Lunch" "Dinner" "Dinner" ...
+ $ Intermittent_fasting_within_the_last_month                                       : chr  "Sometimes" "Sometimes" "Never" "Never" ...
+ $ Number_of_meals_per_day                                                          : chr  "3" "2" "3" "3" ...
+ $ Number_of_meals_per_day_Category                                                 : chr  "High" "Low" "High" "High" ...
+ $ Frequency_of_bowel_movements                                                     : chr  "Every day" "Every day" "Every day" "Every day" ...
+ $ Self.reported_perceived_stress_or_anxiety_level                                  : int  1 3 4 2 3 2 3 4 3 5 ...
+ $ Self.reported_perceived_stress_or_anxiety_level_Category                         : chr  "Low" "High" "High" "Low" ...
+> head(metadata)
+  X.SampleID Sample.quality.notes Special_diet_type Vegetarian Servings_of_non.fish_meat_per_week
+1      Glint                               Omnivore         No                                  3
+2      Agile Low mass and 260-230          Omnivore         No                                 10
+3     Amber                                    None         No                                  1
+4      Apple Low mass and 260-230          Omnivore         No                                 10
+5      Brave                                                No                                  7
+6      Cedar                               Omnivore         No                                 10
+  Servings_of_non.fish_meat_per_week_Category Servings_of_seafood_per_week
+1                                         Low                            0
+2                                        High                            1
+3                                         Low                            3
+4                                        High                            0
+5                                        High                            0
+6                                        High                            1
+  Servings_of_seafood_per_week_Category Types_of_fruits_eaten_in_a_typical_day
+1                                   Low                                      1
+2                                  High                                      1
+3                                  High                                      2
+4                                   Low                                      3
+5                                   Low                                      0
+6                                  High                                      2
+  Types_of_fruits_eaten_in_a_typical_day_Category
+1                                             Low
+2                                             Low
+3                                            High
+4                                            High
+5                                             Low
+6                                            High
+  Types_of_vegetables_or_legumes_eaten_in_a_typical_day
+1                                                     1
+2                                                     1
+3                                                     4
+4                                                     6
+5                                                     0
+6                                                     3
+  Types_of_vegetables_or_legumes_eaten_in_a_typical_day_Category
+1                                                            Low
+2                                                            Low
+3                                                           High
+4                                                           High
+5                                                            Low
+6                                                           High
+  Servings_of_whole_grains_fruits_and_vegetables_per_day
+1                                                      3
+2                                                      2
+3                                                      3
+4                                                      5
+5                                                      1
+6                                                      3
+  Servings_of_whole_grains_fruits_and_vegetables_per_day_Category
+1                                                            High
+2                                                             Low
+3                                                            High
+4                                                            High
+5                                                             Low
+6                                                            High
+  Servings_of_alcohol_per_day_on_average Servings_of_alcohol_per_day_on_average_Category
+1                                      0                                            High
+2                                      0                                            High
+3                                      0                                            High
+4                                      0                                            High
+5                                      0                                            High
+6                                      0                                            High
+  Smoke_exposure Vaping_exposure Servings_of_caffeine_per_day_on_average
+1            Yes             Yes                                       1
+2            Yes              No                                       0
+3             No              No                                       5
+4             No              No                                       1
+5             No              No                                       0
+6             No              No                                       4
+  Servings_of_caffeine_per_day_on_average_Category Servings_of_fermented_foods_in_last_week
+1                                             High                                        1
+2                                              Low                                        1
+3                                             High                                        7
+4                                             High                                        0
+5                                              Low                                        0
+6                                             High                                        0
+  Servings_of_fermented_foods_in_last_week_Category Servings_of_spicy_foods_in_a_day
+1                                              High                                2
+2                                              High                                1
+3                                              High                                0
+4                                               Low                                0
+5                                               Low                                1
+6                                               Low                                3
+  Servings_of_spicy_foods_in_a_day_Category
+1                                      High
+2                                      High
+3                                       Low
+4                                       Low
+5                                      High
+6                                      High
+  Servings_of_dairy__animal_milk__per_day__serving_is_around_a_cup_or_8oz_
+1                                                                        1
+2                                                                        1
+3                                                                        0
+4                                                                        1
+5                                                                        0
+6                                                                        1
+  Servings_of_dairy__animal_milk__per_day__serving_is_around_a_cup_or_8oz__Category
+1                                                                              High
+2                                                                              High
+3                                                                               Low
+4                                                                              High
+5                                                                               Low
+6                                                                              High
+  Servings_of_highly_processed_foods_in_a_day Servings_of_highly_processed_foods_in_a_day_Category
+1                                           1                                                  Low
+2                                          10                                                 High
+3                                           3                                                 High
+4                                           1                                                  Low
+5                                           3                                                 High
+6                                           1                                                  Low
+  Fraction_of_diet_that_is_organic Fraction_of_diet_that_is_organic_Category
+1                              0.3                                      High
+2                              0.1                                       Low
+3                              0.2                                      High
+4                              1.0                                      High
+5                              0.0                                       Low
+6                              0.0                                       Low
+  Number_of_frozen_food_meals_in_the_last_week
+1                                           10
+2                                            2
+3                                            0
+4                                            0
+5                                            0
+6                                            0
+  Number_of_frozen_food_meals_in_the_last_week_Category Vitamins_or_supplements_or_probiotics
+1                                                  High                                    No
+2                                                  High                                    No
+3                                                   Low                                   Yes
+4                                                   Low                                    No
+5                                                   Low                                    No
+6                                                   Low                                    No
+  Vitamin_or_supplement_or_probiotic_description__optional_ Hours_of_sleep Hours_of_sleep_Category
+1                                                                        7                    High
+2                                                                        7                    High
+3                                                      Iron              7                    High
+4                                                                        8                    High
+5                                                                        7                    High
+6                                                                        8                    High
+  Typical_bedtime Typical_bedtime_Category Minutes_of_exercise Minutes_of_exercise_Category
+1     11:30:00 PM                     Late                  20                          Low
+2     12:00:00 AM                     Late                   0                          Low
+3     11:00:00 PM                     Late                 100                         High
+4     10:30:00 PM                    Early                  60                         High
+5     12:00:00 AM                     Late                 150                         High
+6     11:00:00 AM                     Late                   0                          Low
+  Do_you_typically_exercise_before_eating Do_you_have_one_or_more_pets If_you_have_pets_what_kind
+1                                      No                           No                       <NA>
+2                                      No                           No                           
+3                                      No                           No                           
+4                                     Yes                           No                           
+5                                      No                          Yes                       Cats
+6                                      No                           No                           
+  Do_you_live_on_or_off_campus Do_you_typically_exercise_after_eating Number_of_roommates
+1                    On campus                                     No                   0
+2                   Off campus                                     No                   3
+3                    On campus                                    Yes                   0
+4                   Off campus                                     No                   2
+5                   Off campus                                    Yes                   3
+6                   Off campus                                    Yes                   0
+  Number_of_roommates_Category Did_you_take_antibiotics_in_the_last_month
+1                          Low                                        Yes
+2                         High                                        Yes
+3                          Low                                         No
+4                          Low                                         No
+5                         High                                         No
+6                          Low                                         No
+                                Eating_schedule                Primary_drinking_water_source
+1                3 _or fewer_ square meals only                                    Tap water
+2                3 _or fewer_ square meals only Filtered water bottled water or spring water
+3 More grazing/snacks/alternative schedule etc.                                    Tap water
+4                3 _or fewer_ square meals only Filtered water bottled water or spring water
+5 More grazing/snacks/alternative schedule etc. Filtered water bottled water or spring water
+6                3 _or fewer_ square meals only                                    Tap water
+  Number_of_restaurant_meals_in_the_last_week Number_of_restaurant_meals_in_the_last_week_Category
+1                                           2                                                 High
+2                                          13                                                 High
+3                                           1                                                  Low
+4                                           1                                                  Low
+5                                           1                                                  Low
+6                                           5                                                 High
+  Work_hours_or_week Work_hours_or_week_Category Take_public_transport_at_least_once_or_month
+1                 50                        High                                           No
+2                  0                         Low                                          Yes
+3                  0                         Low                                           No
+4                  0                         Low                                          Yes
+5                 10                         Low                                           No
+6                 30                        High                                          Yes
+  Any_known_gastro_disease Currently_taking_antibiotics
+1                     <NA>                           No
+2                       No                           No
+3                      Yes                           No
+4                       No                           No
+5                       No                           No
+6                      Yes                           No
+  What_types_of_food_do_you_usually_not_finish How_often_do_you_shower_or_bathe_per_week
+1                         Desserts fried chips                                         5
+2                                         Rice                                         2
+3                                                                                      8
+4                                                                                      7
+5                                                                                      4
+6                                         <NA>                                         4
+  How_often_do_you_shower_or_bathe_per_week_Category Known_allergies Largest_meal_of_the_day
+1                                                Low              No                   Lunch
+2                                                Low              No                   Lunch
+3                                               High              No                  Dinner
+4                                               High              No                  Dinner
+5                                                Low             Yes                  Dinner
+6                                                Low              No               Breakfast
+  Intermittent_fasting_within_the_last_month Number_of_meals_per_day
+1                                  Sometimes                       3
+2                                  Sometimes                       2
+3                                      Never                       3
+4                                      Never                       3
+5                                      Never                       2
+6                                  Sometimes                      4+
+  Number_of_meals_per_day_Category Frequency_of_bowel_movements
+1                             High                    Every day
+2                              Low                    Every day
+3                             High                    Every day
+4                             High                    Every day
+5                              Low                    Every day
+6                             High                    Every day
+  Self.reported_perceived_stress_or_anxiety_level
+1                                               1
+2                                               3
+3                                               4
+4                                               2
+5                                               3
+6                                               2
+  Self.reported_perceived_stress_or_anxiety_level_Category
+1                                                      Low
+2                                                     High
+3                                                     High
+4                                                      Low
+5                                                     High
+6                                                      Low
+> combined_data <- merge(alpha_diversity, metadata, by.x = "X", by.y = "X.SampleID")
+> str(combined_data)
+'data.frame':	35 obs. of  71 variables:
+ $ X                                                                                : chr  "Agile" "Apple" "Cedar" "Crown" ...
+ $ chao1                                                                            : num  1291 1082 1793 1967 1057 ...
+ $ observed_otus                                                                    : num  418 434 639 845 593 556 352 401 654 478 ...
+ $ shannon                                                                          : num  4.03 3.77 5.12 4.69 4.37 ...
+ $ Sample.quality.notes                                                             : chr  "Low mass and 260-230" "Low mass and 260-230" "" "" ...
+ $ Special_diet_type                                                                : chr  "Omnivore" "Omnivore" "Omnivore" "Vegetarian" ...
+ $ Vegetarian                                                                       : chr  "No" "No" "No" "Yes" ...
+ $ Servings_of_non.fish_meat_per_week                                               : int  10 10 10 1 0 7 7 10 1 5 ...
+ $ Servings_of_non.fish_meat_per_week_Category                                      : chr  "High" "High" "High" "Low" ...
+ $ Servings_of_seafood_per_week                                                     : int  1 0 1 0 0 1 0 0 0 2 ...
+ $ Servings_of_seafood_per_week_Category                                            : chr  "High" "Low" "High" "Low" ...
+ $ Types_of_fruits_eaten_in_a_typical_day                                           : int  1 3 2 3 2 2 3 2 2 1 ...
+ $ Types_of_fruits_eaten_in_a_typical_day_Category                                  : chr  "Low" "High" "High" "High" ...
+ $ Types_of_vegetables_or_legumes_eaten_in_a_typical_day                            : int  1 6 3 5 5 3 5 1 3 2 ...
+ $ Types_of_vegetables_or_legumes_eaten_in_a_typical_day_Category                   : chr  "Low" "High" "High" "High" ...
+ $ Servings_of_whole_grains_fruits_and_vegetables_per_day                           : int  2 5 3 5 3 1 2 7 9 3 ...
+ $ Servings_of_whole_grains_fruits_and_vegetables_per_day_Category                  : chr  "Low" "High" "High" "High" ...
+ $ Servings_of_alcohol_per_day_on_average                                           : int  0 0 0 0 0 1 0 5 0 1 ...
+ $ Servings_of_alcohol_per_day_on_average_Category                                  : chr  "High" "High" "High" "High" ...
+ $ Smoke_exposure                                                                   : chr  "Yes" "No" "No" "No" ...
+ $ Vaping_exposure                                                                  : chr  "No" "No" "No" "No" ...
+ $ Servings_of_caffeine_per_day_on_average                                          : int  0 1 4 1 0 4 0 5 5 3 ...
+ $ Servings_of_caffeine_per_day_on_average_Category                                 : chr  "Low" "High" "High" "High" ...
+ $ Servings_of_fermented_foods_in_last_week                                         : int  1 0 0 7 0 0 5 0 7 0 ...
+ $ Servings_of_fermented_foods_in_last_week_Category                                : chr  "High" "Low" "Low" "High" ...
+ $ Servings_of_spicy_foods_in_a_day                                                 : int  1 0 3 1 0 2 1 1 1 3 ...
+ $ Servings_of_spicy_foods_in_a_day_Category                                        : chr  "High" "Low" "High" "High" ...
+ $ Servings_of_dairy__animal_milk__per_day__serving_is_around_a_cup_or_8oz_         : int  1 1 1 1 1 0 2 2 1 2 ...
+ $ Servings_of_dairy__animal_milk__per_day__serving_is_around_a_cup_or_8oz__Category: chr  "High" "High" "High" "High" ...
+ $ Servings_of_highly_processed_foods_in_a_day                                      : int  10 1 1 3 3 1 1 2 5 5 ...
+ $ Servings_of_highly_processed_foods_in_a_day_Category                             : chr  "High" "Low" "Low" "High" ...
+ $ Fraction_of_diet_that_is_organic                                                 : num  0.1 1 0 0.4 0.1 0.7 0.1 0.2 0.1 0.3 ...
+ $ Fraction_of_diet_that_is_organic_Category                                        : chr  "Low" "High" "Low" "High" ...
+ $ Number_of_frozen_food_meals_in_the_last_week                                     : int  2 0 0 0 1 0 0 0 1 5 ...
+ $ Number_of_frozen_food_meals_in_the_last_week_Category                            : chr  "High" "Low" "Low" "Low" ...
+ $ Vitamins_or_supplements_or_probiotics                                            : chr  "No" "No" "No" "No" ...
+ $ Vitamin_or_supplement_or_probiotic_description__optional_                        : chr  "" "" "" "" ...
+ $ Hours_of_sleep                                                                   : int  7 8 8 8 8 7 7 9 8 7 ...
+ $ Hours_of_sleep_Category                                                          : chr  "High" "High" "High" "High" ...
+ $ Typical_bedtime                                                                  : chr  "12:00:00 AM" "10:30:00 PM" "11:00:00 AM" "10:30:00 PM" ...
+ $ Typical_bedtime_Category                                                         : chr  "Late" "Early" "Late" "Early" ...
+ $ Minutes_of_exercise                                                              : int  0 60 0 60 120 60 70 30 60 45 ...
+ $ Minutes_of_exercise_Category                                                     : chr  "Low" "High" "Low" "High" ...
+ $ Do_you_typically_exercise_before_eating                                          : chr  "No" "Yes" "No" "No" ...
+ $ Do_you_have_one_or_more_pets                                                     : chr  "No" "No" "No" "No" ...
+ $ If_you_have_pets_what_kind                                                       : chr  "" "" "" "" ...
+ $ Do_you_live_on_or_off_campus                                                     : chr  "Off campus" "Off campus" "Off campus" "Off campus" ...
+ $ Do_you_typically_exercise_after_eating                                           : chr  "No" "No" "Yes" "No" ...
+ $ Number_of_roommates                                                              : int  3 2 0 1 3 4 1 0 1 4 ...
+ $ Number_of_roommates_Category                                                     : chr  "High" "Low" "Low" "Low" ...
+ $ Did_you_take_antibiotics_in_the_last_month                                       : chr  "Yes" "No" "No" "No" ...
+ $ Eating_schedule                                                                  : chr  "3 _or fewer_ square meals only" "3 _or fewer_ square meals only" "3 _or fewer_ square meals only" "More grazing/snacks/alternative schedule etc." ...
+ $ Primary_drinking_water_source                                                    : chr  "Filtered water bottled water or spring water" "Filtered water bottled water or spring water" "Tap water" "Tap water" ...
+ $ Number_of_restaurant_meals_in_the_last_week                                      : int  13 1 5 2 2 0 2 1 2 3 ...
+ $ Number_of_restaurant_meals_in_the_last_week_Category                             : chr  "High" "Low" "High" "High" ...
+ $ Work_hours_or_week                                                               : num  0 0 30 40 20 30 20 10 40 20 ...
+ $ Work_hours_or_week_Category                                                      : chr  "Low" "Low" "High" "High" ...
+ $ Take_public_transport_at_least_once_or_month                                     : chr  "Yes" "Yes" "Yes" "Yes" ...
+ $ Any_known_gastro_disease                                                         : chr  "No" "No" "Yes" "No" ...
+ $ Currently_taking_antibiotics                                                     : chr  "No" "No" "No" "No" ...
+ $ What_types_of_food_do_you_usually_not_finish                                     : chr  "Rice" "" NA "" ...
+ $ How_often_do_you_shower_or_bathe_per_week                                        : int  2 7 4 3 4 6 7 7 7 8 ...
+ $ How_often_do_you_shower_or_bathe_per_week_Category                               : chr  "Low" "High" "Low" "Low" ...
+ $ Known_allergies                                                                  : chr  "No" "No" "No" "No" ...
+ $ Largest_meal_of_the_day                                                          : chr  "Lunch" "Dinner" "Breakfast" "Dinner" ...
+ $ Intermittent_fasting_within_the_last_month                                       : chr  "Sometimes" "Never" "Sometimes" "Never" ...
+ $ Number_of_meals_per_day                                                          : chr  "2" "3" "4+" "2" ...
+ $ Number_of_meals_per_day_Category                                                 : chr  "Low" "High" "High" "Low" ...
+ $ Frequency_of_bowel_movements                                                     : chr  "Every day" "Every day" "Every day" "Less than every day" ...
+ $ Self.reported_perceived_stress_or_anxiety_level                                  : int  3 2 2 3 4 5 4 3 3 4 ...
+ $ Self.reported_perceived_stress_or_anxiety_level_Category                         : chr  "High" "Low" "Low" "High" ...
+> head(combined_data)
+      X    chao1 observed_otus  shannon Sample.quality.notes Special_diet_type Vegetarian
+1 Agile 1290.634           418 4.028733 Low mass and 260-230          Omnivore         No
+2 Apple 1081.500           434 3.766760 Low mass and 260-230          Omnivore         No
+3 Cedar 1793.178           639 5.119078                               Omnivore         No
+4 Crown 1967.407           845 4.692901                             Vegetarian        Yes
+5 Dance 1056.759           593 4.371651                             Vegetarian        Yes
+6 Dwell 1610.444           556 4.741613                               Omnivore         No
+  Servings_of_non.fish_meat_per_week Servings_of_non.fish_meat_per_week_Category
+1                                 10                                        High
+2                                 10                                        High
+3                                 10                                        High
+4                                  1                                         Low
+5                                  0                                         Low
+6                                  7                                        High
+  Servings_of_seafood_per_week Servings_of_seafood_per_week_Category
+1                            1                                  High
+2                            0                                   Low
+3                            1                                  High
+4                            0                                   Low
+5                            0                                   Low
+6                            1                                  High
+  Types_of_fruits_eaten_in_a_typical_day Types_of_fruits_eaten_in_a_typical_day_Category
+1                                      1                                             Low
+2                                      3                                            High
+3                                      2                                            High
+4                                      3                                            High
+5                                      2                                            High
+6                                      2                                            High
+  Types_of_vegetables_or_legumes_eaten_in_a_typical_day
+1                                                     1
+2                                                     6
+3                                                     3
+4                                                     5
+5                                                     5
+6                                                     3
+  Types_of_vegetables_or_legumes_eaten_in_a_typical_day_Category
+1                                                            Low
+2                                                           High
+3                                                           High
+4                                                           High
+5                                                           High
+6                                                           High
+  Servings_of_whole_grains_fruits_and_vegetables_per_day
+1                                                      2
+2                                                      5
+3                                                      3
+4                                                      5
+5                                                      3
+6                                                      1
+  Servings_of_whole_grains_fruits_and_vegetables_per_day_Category
+1                                                             Low
+2                                                            High
+3                                                            High
+4                                                            High
+5                                                            High
+6                                                             Low
+  Servings_of_alcohol_per_day_on_average Servings_of_alcohol_per_day_on_average_Category
+1                                      0                                            High
+2                                      0                                            High
+3                                      0                                            High
+4                                      0                                            High
+5                                      0                                            High
+6                                      1                                            High
+  Smoke_exposure Vaping_exposure Servings_of_caffeine_per_day_on_average
+1            Yes              No                                       0
+2             No              No                                       1
+3             No              No                                       4
+4             No              No                                       1
+5             No              No                                       0
+6             No              No                                       4
+  Servings_of_caffeine_per_day_on_average_Category Servings_of_fermented_foods_in_last_week
+1                                              Low                                        1
+2                                             High                                        0
+3                                             High                                        0
+4                                             High                                        7
+5                                              Low                                        0
+6                                             High                                        0
+  Servings_of_fermented_foods_in_last_week_Category Servings_of_spicy_foods_in_a_day
+1                                              High                                1
+2                                               Low                                0
+3                                               Low                                3
+4                                              High                                1
+5                                               Low                                0
+6                                               Low                                2
+  Servings_of_spicy_foods_in_a_day_Category
+1                                      High
+2                                       Low
+3                                      High
+4                                      High
+5                                       Low
+6                                      High
+  Servings_of_dairy__animal_milk__per_day__serving_is_around_a_cup_or_8oz_
+1                                                                        1
+2                                                                        1
+3                                                                        1
+4                                                                        1
+5                                                                        1
+6                                                                        0
+  Servings_of_dairy__animal_milk__per_day__serving_is_around_a_cup_or_8oz__Category
+1                                                                              High
+2                                                                              High
+3                                                                              High
+4                                                                              High
+5                                                                              High
+6                                                                               Low
+  Servings_of_highly_processed_foods_in_a_day Servings_of_highly_processed_foods_in_a_day_Category
+1                                          10                                                 High
+2                                           1                                                  Low
+3                                           1                                                  Low
+4                                           3                                                 High
+5                                           3                                                 High
+6                                           1                                                  Low
+  Fraction_of_diet_that_is_organic Fraction_of_diet_that_is_organic_Category
+1                              0.1                                       Low
+2                              1.0                                      High
+3                              0.0                                       Low
+4                              0.4                                      High
+5                              0.1                                       Low
+6                              0.7                                      High
+  Number_of_frozen_food_meals_in_the_last_week
+1                                            2
+2                                            0
+3                                            0
+4                                            0
+5                                            1
+6                                            0
+  Number_of_frozen_food_meals_in_the_last_week_Category Vitamins_or_supplements_or_probiotics
+1                                                  High                                    No
+2                                                   Low                                    No
+3                                                   Low                                    No
+4                                                   Low                                    No
+5                                                  High                                   Yes
+6                                                   Low                                    No
+  Vitamin_or_supplement_or_probiotic_description__optional_ Hours_of_sleep Hours_of_sleep_Category
+1                                                                        7                    High
+2                                                                        8                    High
+3                                                                        8                    High
+4                                                                        8                    High
+5                           iron magnesium calcium fish oil              8                    High
+6                                              lactobacilos              7                    High
+  Typical_bedtime Typical_bedtime_Category Minutes_of_exercise Minutes_of_exercise_Category
+1     12:00:00 AM                     Late                   0                          Low
+2     10:30:00 PM                    Early                  60                         High
+3     11:00:00 AM                     Late                   0                          Low
+4     10:30:00 PM                    Early                  60                         High
+5     10:00:00 PM                    Early                 120                         High
+6     11:00:00 PM                     Late                  60                         High
+  Do_you_typically_exercise_before_eating Do_you_have_one_or_more_pets If_you_have_pets_what_kind
+1                                      No                           No                           
+2                                     Yes                           No                           
+3                                      No                           No                           
+4                                      No                           No                           
+5                                      No                           No                           
+6                                     Yes                           No                           
+  Do_you_live_on_or_off_campus Do_you_typically_exercise_after_eating Number_of_roommates
+1                   Off campus                                     No                   3
+2                   Off campus                                     No                   2
+3                   Off campus                                    Yes                   0
+4                   Off campus                                     No                   1
+5                    On campus                                    Yes                   3
+6                   Off campus                                     No                   4
+  Number_of_roommates_Category Did_you_take_antibiotics_in_the_last_month
+1                         High                                        Yes
+2                          Low                                         No
+3                          Low                                         No
+4                          Low                                         No
+5                         High                                         No
+6                         High                                         No
+                                Eating_schedule                Primary_drinking_water_source
+1                3 _or fewer_ square meals only Filtered water bottled water or spring water
+2                3 _or fewer_ square meals only Filtered water bottled water or spring water
+3                3 _or fewer_ square meals only                                    Tap water
+4 More grazing/snacks/alternative schedule etc.                                    Tap water
+5 More grazing/snacks/alternative schedule etc. Filtered water bottled water or spring water
+6                3 _or fewer_ square meals only                                    Tap water
+  Number_of_restaurant_meals_in_the_last_week Number_of_restaurant_meals_in_the_last_week_Category
+1                                          13                                                 High
+2                                           1                                                  Low
+3                                           5                                                 High
+4                                           2                                                 High
+5                                           2                                                 High
+6                                           0                                                  Low
+  Work_hours_or_week Work_hours_or_week_Category Take_public_transport_at_least_once_or_month
+1                  0                         Low                                          Yes
+2                  0                         Low                                          Yes
+3                 30                        High                                          Yes
+4                 40                        High                                          Yes
+5                 20                        High                                           No
+6                 30                        High                                          Yes
+  Any_known_gastro_disease Currently_taking_antibiotics
+1                       No                           No
+2                       No                           No
+3                      Yes                           No
+4                       No                           No
+5                      Yes                           No
+6                       No                           No
+  What_types_of_food_do_you_usually_not_finish How_often_do_you_shower_or_bathe_per_week
+1                                         Rice                                         2
+2                                                                                      7
+3                                         <NA>                                         4
+4                                                                                      3
+5                                                                                      4
+6                                                                                      6
+  How_often_do_you_shower_or_bathe_per_week_Category Known_allergies Largest_meal_of_the_day
+1                                                Low              No                   Lunch
+2                                               High              No                  Dinner
+3                                                Low              No               Breakfast
+4                                                Low              No                  Dinner
+5                                                Low             Yes                  Dinner
+6                                               High              No                   Lunch
+  Intermittent_fasting_within_the_last_month Number_of_meals_per_day
+1                                  Sometimes                       2
+2                                      Never                       3
+3                                  Sometimes                      4+
+4                                      Never                       2
+5                                  Sometimes                       2
+6                                      Never                       2
+  Number_of_meals_per_day_Category Frequency_of_bowel_movements
+1                              Low                    Every day
+2                             High                    Every day
+3                             High                    Every day
+4                              Low          Less than every day
+5                              Low          Less than every day
+6                              Low                    Every day
+  Self.reported_perceived_stress_or_anxiety_level
+1                                               3
+2                                               2
+3                                               2
+4                                               3
+5                                               4
+6                                               5
+  Self.reported_perceived_stress_or_anxiety_level_Category
+1                                                     High
+2                                                      Low
+3                                                      Low
+4                                                     High
+5                                                     High
+6                                                     High
+> vegetarians <- subset(combined_data, Vegetarian == "Yes")
+> omnivores <- subset(combined_data, Vegetarian == "No")
+> shannon_test <- t.test(vegetarians$shannon, omnivores$shannon, alternative = "two.sided")
+> print(shannon_test)
+
+	Welch Two Sample t-test
+
+data:  vegetarians$shannon and omnivores$shannon
+t = -0.31755, df = 4.0025, p-value = 0.7667
+alternative hypothesis: true difference in means is not equal to 0
+95 percent confidence interval:
+ -0.7209649  0.5729416
+sample estimates:
+mean of x mean of y 
+ 4.212883  4.286894 
+
+> # Boxplot of Shannon Index by Diet Group
+> boxplot(shannon ~ Vegetarian, data = combined_data,
++         main = "Shannon Diversity Index by Diet Group",
++         xlab = "Diet Group",
++         ylab = "Shannon Index",
++         col = c("lightgreen", "lightblue"))
+Error in plot.new() : figure margins too large
+> View(alpha_diversity)
+> View(combined_data)
+> # Boxplot of Shannon Index by Diet Group
+> boxplot(shannon ~ Vegetarian, data = combined_data,
++         main = "Shannon Diversity Index by Diet Group",
++         xlab = "Diet Group",
++         ylab = "Shannon Index",
++         col = c("lightgreen", "lightblue"))
+> 
+> # Add mean points to the boxplot
+> points(c(1, 2), c(mean(vegetarians$shannon, na.rm = TRUE), mean(omnivores$shannon, na.rm = TRUE)),
++        col = "red", pch = 19)
+> # Separate the data by diet group
+> vegetarians <- subset(combined_data, Vegetarian == "Yes")
+> omnivores <- subset(combined_data, Vegetarian == "No")
+> 
+> # Run a t-test
+> t_test_result <- t.test(vegetarians$shannon, omnivores$shannon, alternative = "two.sided")
+> 
+> # Display the results
+> print(t_test_result)
+
+	Welch Two Sample t-test
+
+data:  vegetarians$shannon and omnivores$shannon
+t = -0.31755, df = 4.0025, p-value = 0.7667
+alternative hypothesis: true difference in means is not equal to 0
+95 percent confidence interval:
+ -0.7209649  0.5729416
+sample estimates:
+mean of x mean of y 
+ 4.212883  4.286894 
+
+> 
+> # Calculate effect size (Cohen's d)
+> mean_diff <- mean(vegetarians$shannon) - mean(omnivores$shannon)
+> pooled_sd <- sqrt(((length(vegetarians$shannon) - 1) * var(vegetarians$shannon) +
++                        (length(omnivores$shannon) - 1) * var(omnivores$shannon)) /
++                       (length(vegetarians$shannon) + length(omnivores$shannon) - 2))
+> effect_size <- mean_diff / pooled_sd
+> print(paste("Effect Size (Cohen's d):", round(effect_size, 3)))
+[1] "Effect Size (Cohen's d): -0.156"
+> # Load beta diversity data
+> bray_curtis <- read.delim("Desktop/mice_project/bray_curtis_taxa_table_L7_rarefied.txt", header = TRUE, sep = "\t")
+> binary_jaccard <- read.delim("Desktop/mice_project/binary_jaccard_taxa_table_L7_rarefied.txt", header = TRUE, sep = "\t")
+> 
+> # Inspect the structure of the data
+> str(bray_curtis)
+'data.frame':	37 obs. of  38 variables:
+ $ X    : chr  "Agile" "Amber" "Apple" "Cedar" ...
+ $ Agile: num  0 0.459 0.346 0.494 0.359 ...
+ $ Amber: num  0.459 0 0.44 0.583 0.468 ...
+ $ Apple: num  0.346 0.44 0 0.558 0.416 ...
+ $ Cedar: num  0.494 0.583 0.558 0 0.463 ...
+ $ Crown: num  0.359 0.468 0.416 0.463 0 ...
+ $ Dance: num  0.449 0.426 0.436 0.569 0.41 ...
+ $ Dwell: num  0.503 0.559 0.52 0.539 0.51 ...
+ $ Eagle: num  0.412 0.58 0.265 0.569 0.467 ...
+ $ Earth: num  0.52 0.431 0.568 0.602 0.524 ...
+ $ Fleet: num  0.432 0.459 0.447 0.456 0.288 ...
+ $ Giant: num  0.462 0.468 0.505 0.455 0.424 ...
+ $ Grace: num  0.365 0.486 0.261 0.626 0.465 ...
+ $ Honor: num  0.576 0.64 0.63 0.53 0.524 ...
+ $ Inlet: num  0.542 0.418 0.52 0.565 0.538 ...
+ $ Joker: num  0.438 0.369 0.424 0.552 0.434 ...
+ $ Kneel: num  0.507 0.368 0.5 0.59 0.531 ...
+ $ Knife: num  0.313 0.445 0.445 0.387 0.317 ...
+ $ Latch: num  0.421 0.336 0.375 0.475 0.391 ...
+ $ Lemon: num  0.489 0.541 0.52 0.448 0.407 ...
+ $ Mover: num  0.474 0.567 0.45 0.717 0.559 ...
+ $ North: num  0.378 0.565 0.513 0.403 0.3 ...
+ $ Ocean: num  0.349 0.403 0.366 0.418 0.257 ...
+ $ Outer: num  0.307 0.53 0.299 0.512 0.382 ...
+ $ Overt: num  0.602 0.732 0.727 0.626 0.632 ...
+ $ Paint: num  0.517 0.528 0.478 0.663 0.531 ...
+ $ Quiet: num  0.584 0.652 0.636 0.529 0.562 ...
+ $ Quirk: num  0.536 0.679 0.638 0.426 0.455 ...
+ $ Roast: num  0.435 0.401 0.322 0.606 0.449 ...
+ $ Rocky: num  0.342 0.247 0.36 0.519 0.377 ...
+ $ Shore: num  0.326 0.443 0.396 0.464 0.391 ...
+ $ Smart: num  0.455 0.543 0.6 0.45 0.429 ...
+ $ Spark: num  0.475 0.547 0.61 0.543 0.481 ...
+ $ Storm: num  0.418 0.542 0.547 0.449 0.44 ...
+ $ Trend: num  0.426 0.562 0.513 0.374 0.314 ...
+ $ Vapor: num  0.414 0.525 0.471 0.405 0.253 ...
+ $ Water: num  0.306 0.421 0.447 0.455 0.379 ...
+ $ Zebra: num  0.443 0.449 0.48 0.552 0.465 ...
+> str(binary_jaccard)
+'data.frame':	37 obs. of  38 variables:
+ $ X    : chr  "Agile" "Amber" "Apple" "Cedar" ...
+ $ Agile: num  0 0.745 0.753 0.772 0.813 ...
+ $ Amber: num  0.745 0 0.753 0.746 0.751 ...
+ $ Apple: num  0.753 0.753 0 0.8 0.797 ...
+ $ Cedar: num  0.772 0.746 0.8 0 0.756 ...
+ $ Crown: num  0.813 0.751 0.797 0.756 0 ...
+ $ Dance: num  0.749 0.739 0.715 0.758 0.793 ...
+ $ Dwell: num  0.764 0.758 0.77 0.754 0.766 ...
+ $ Eagle: num  0.758 0.769 0.734 0.77 0.804 ...
+ $ Earth: num  0.748 0.749 0.767 0.782 0.804 ...
+ $ Fleet: num  0.776 0.757 0.759 0.759 0.739 ...
+ $ Giant: num  0.752 0.744 0.724 0.746 0.757 ...
+ $ Grace: num  0.751 0.742 0.763 0.749 0.775 ...
+ $ Honor: num  0.819 0.782 0.812 0.781 0.717 ...
+ $ Inlet: num  0.744 0.746 0.747 0.786 0.814 ...
+ $ Joker: num  0.76 0.721 0.747 0.757 0.761 ...
+ $ Kneel: num  0.722 0.746 0.731 0.758 0.815 ...
+ $ Knife: num  0.769 0.764 0.782 0.753 0.77 ...
+ $ Latch: num  0.764 0.723 0.762 0.763 0.758 ...
+ $ Lemon: num  0.756 0.747 0.769 0.754 0.769 ...
+ $ Mover: num  0.786 0.786 0.762 0.803 0.826 ...
+ $ North: num  0.772 0.767 0.766 0.748 0.767 ...
+ $ Ocean: num  0.77 0.729 0.76 0.753 0.773 ...
+ $ Outer: num  0.748 0.721 0.73 0.759 0.786 ...
+ $ Overt: num  0.748 0.781 0.772 0.778 0.818 ...
+ $ Paint: num  0.771 0.761 0.752 0.792 0.809 ...
+ $ Quiet: num  0.786 0.771 0.785 0.76 0.744 ...
+ $ Quirk: num  0.784 0.771 0.781 0.757 0.761 ...
+ $ Roast: num  0.77 0.758 0.762 0.773 0.819 ...
+ $ Rocky: num  0.763 0.727 0.753 0.769 0.813 ...
+ $ Shore: num  0.735 0.725 0.742 0.745 0.787 ...
+ $ Smart: num  0.748 0.758 0.761 0.737 0.793 ...
+ $ Spark: num  0.762 0.764 0.757 0.773 0.802 ...
+ $ Storm: num  0.755 0.752 0.772 0.747 0.764 ...
+ $ Trend: num  0.777 0.763 0.779 0.737 0.757 ...
+ $ Vapor: num  0.78 0.767 0.793 0.766 0.74 ...
+ $ Water: num  0.754 0.754 0.745 0.77 0.808 ...
+ $ Zebra: num  0.724 0.748 0.742 0.774 0.807 ...
+> # Load metadata
+> metadata <- read.delim("Desktop/mice_project/project_metadata.txt", header = TRUE, sep = "\t")
+> 
+> # Confirm vegetarian/omnivore labels are present
+> unique(metadata$Vegetarian)
+[1] "No"  "Yes"
+> if (!require(vegan)) install.packages("vegan")
+Loading required package: vegan
+Installing package into ‘/opt/homebrew/lib/R/4.4/site-library’
+(as ‘lib’ is unspecified)
+also installing the dependency ‘permute’
+
+trying URL 'https://cran.rstudio.com/src/contrib/permute_0.9-7.tar.gz'
+Content type 'application/x-gzip' length 114805 bytes (112 KB)
+==================================================
+downloaded 112 KB
+
+trying URL 'https://cran.rstudio.com/src/contrib/vegan_2.6-8.tar.gz'
+Content type 'application/x-gzip' length 1499798 bytes (1.4 MB)
+==================================================
+downloaded 1.4 MB
+
+* installing *source* package ‘permute’ ...
+** package ‘permute’ successfully unpacked and MD5 sums checked
+** using staged installation
+** R
+** data
+** inst
+** byte-compile and prepare package for lazy loading
+** help
+*** installing help indices
+** building package indices
+** installing vignettes
+** testing if installed package can be loaded from temporary location
+** testing if installed package can be loaded from final location
+** testing if installed package keeps a record of temporary installation path
+* DONE (permute)
+* installing *source* package ‘vegan’ ...
+** package ‘vegan’ successfully unpacked and MD5 sums checked
+** using staged installation
+** libs
+using C compiler: ‘Apple clang version 16.0.0 (clang-1600.0.26.4)’
+using Fortran compiler: ‘GNU Fortran (Homebrew GCC 14.2.0_1) 14.2.0’
+using SDK: ‘MacOSX15.1.sdk’
+clang -I"/opt/homebrew/Cellar/r/4.4.2_2/lib/R/include" -DNDEBUG   -I/opt/homebrew/opt/gettext/include -I/opt/homebrew/opt/readline/include -I/opt/homebrew/opt/xz/include -I/opt/homebrew/include    -fPIC  -g -O2  -c data2hill.c -o data2hill.o
+/opt/homebrew/opt/gcc/bin/gfortran  -fPIC  -g -O2  -c decorana.f -o decorana.o
+clang -I"/opt/homebrew/Cellar/r/4.4.2_2/lib/R/include" -DNDEBUG   -I/opt/homebrew/opt/gettext/include -I/opt/homebrew/opt/readline/include -I/opt/homebrew/opt/xz/include -I/opt/homebrew/include    -fPIC  -g -O2  -c getF.c -o getF.o
+clang -I"/opt/homebrew/Cellar/r/4.4.2_2/lib/R/include" -DNDEBUG   -I/opt/homebrew/opt/gettext/include -I/opt/homebrew/opt/readline/include -I/opt/homebrew/opt/xz/include -I/opt/homebrew/include    -fPIC  -g -O2  -c goffactor.c -o goffactor.o
+clang -I"/opt/homebrew/Cellar/r/4.4.2_2/lib/R/include" -DNDEBUG   -I/opt/homebrew/opt/gettext/include -I/opt/homebrew/opt/readline/include -I/opt/homebrew/opt/xz/include -I/opt/homebrew/include    -fPIC  -g -O2  -c init.c -o init.o
+/opt/homebrew/opt/gcc/bin/gfortran  -fPIC  -g -O2  -c monoMDS.f -o monoMDS.o
+clang -I"/opt/homebrew/Cellar/r/4.4.2_2/lib/R/include" -DNDEBUG   -I/opt/homebrew/opt/gettext/include -I/opt/homebrew/opt/readline/include -I/opt/homebrew/opt/xz/include -I/opt/homebrew/include    -fPIC  -g -O2  -c nestedness.c -o nestedness.o
+/opt/homebrew/opt/gcc/bin/gfortran  -fPIC  -g -O2  -c ordering.f -o ordering.o
+clang -I"/opt/homebrew/Cellar/r/4.4.2_2/lib/R/include" -DNDEBUG   -I/opt/homebrew/opt/gettext/include -I/opt/homebrew/opt/readline/include -I/opt/homebrew/opt/xz/include -I/opt/homebrew/include    -fPIC  -g -O2  -c pnpoly.c -o pnpoly.o
+clang -I"/opt/homebrew/Cellar/r/4.4.2_2/lib/R/include" -DNDEBUG   -I/opt/homebrew/opt/gettext/include -I/opt/homebrew/opt/readline/include -I/opt/homebrew/opt/xz/include -I/opt/homebrew/include    -fPIC  -g -O2  -c stepacross.c -o stepacross.o
+clang -I"/opt/homebrew/Cellar/r/4.4.2_2/lib/R/include" -DNDEBUG   -I/opt/homebrew/opt/gettext/include -I/opt/homebrew/opt/readline/include -I/opt/homebrew/opt/xz/include -I/opt/homebrew/include    -fPIC  -g -O2  -c vegdist.c -o vegdist.o
+clang -dynamiclib -Wl,-headerpad_max_install_names -undefined dynamic_lookup -L/opt/homebrew/Cellar/r/4.4.2_2/lib/R/lib -L/opt/homebrew/opt/gettext/lib -L/opt/homebrew/opt/readline/lib -L/opt/homebrew/opt/xz/lib -L/opt/homebrew/lib -o vegan.so data2hill.o decorana.o getF.o goffactor.o init.o monoMDS.o nestedness.o ordering.o pnpoly.o stepacross.o vegdist.o -L/opt/homebrew/Cellar/r/4.4.2_2/lib/R/lib -lRlapack -L/opt/homebrew/opt/openblas/lib -lopenblas -L/opt/homebrew/opt/gcc/lib/gcc/current/gcc/aarch64-apple-darwin23/14 -L/opt/homebrew/opt/gcc/lib/gcc/current/gcc -L/opt/homebrew/opt/gcc/lib/gcc/current -lemutls_w -lheapt_w -lgfortran -lquadmath -L/opt/homebrew/opt/gcc/lib/gcc/current/gcc/aarch64-apple-darwin23/14 -L/opt/homebrew/opt/gcc/lib/gcc/current/gcc -L/opt/homebrew/opt/gcc/lib/gcc/current -lemutls_w -lheapt_w -lgfortran -lquadmath -L/opt/homebrew/Cellar/r/4.4.2_2/lib/R/lib -lR -lintl -Wl,-framework -Wl,CoreFoundation
+ld: warning: ignoring duplicate libraries: '-lemutls_w', '-lgfortran', '-lheapt_w', '-lquadmath'
+installing to /opt/homebrew/lib/R/4.4/site-library/00LOCK-vegan/00new/vegan/libs
+** R
+** data
+** inst
+** byte-compile and prepare package for lazy loading
+** help
+*** installing help indices
+** building package indices
+** installing vignettes
+** testing if installed package can be loaded from temporary location
+** checking absolute paths in shared objects and dynamic libraries
+** testing if installed package can be loaded from final location
+** testing if installed package keeps a record of temporary installation path
+* DONE (vegan)
+
+The downloaded source packages are in
+	‘/private/var/folders/rq/jbjy3w9j3730331q300b_4280000gn/T/RtmpH2M9iy/downloaded_packages’
+Warning message:
+In library(package, lib.loc = lib.loc, character.only = TRUE, logical.return = TRUE,  :
+  there is no package called ‘vegan’
+> 
+> installed.packages()["vegan", ]
+                                    Package                                     LibPath 
+                                    "vegan"      "/opt/homebrew/lib/R/4.4/site-library" 
+                                    Version                                    Priority 
+                                    "2.6-8"                                          NA 
+                                    Depends                                     Imports 
+"permute (>= 0.9-0), lattice, R (>= 4.1.0)"                       "MASS, cluster, mgcv" 
+                                  LinkingTo                                    Suggests 
+                                         NA          "parallel, tcltk, knitr, markdown" 
+                                   Enhances                                     License 
+                                         NA                                     "GPL-2" 
+                            License_is_FOSS                       License_restricts_use 
+                                         NA                                          NA 
+                                    OS_type                                      MD5sum 
+                                         NA                                          NA 
+                           NeedsCompilation                                       Built 
+                                      "yes"                                     "4.4.2" 
+> library(vegan)
+Loading required package: permute
+Loading required package: lattice
+This is vegan 2.6-8
+> # Set row names for distance matrices
+> rownames(bray_curtis) <- bray_curtis$X
+> rownames(binary_jaccard) <- binary_jaccard$X
+> 
+> # Drop the first column (sample names) to retain only the distance matrix
+> bray_curtis_matrix <- as.matrix(bray_curtis[, -1])
+> binary_jaccard_matrix <- as.matrix(binary_jaccard[, -1])
+> # Run adonis2 for Bray-Curtis
+> bray_permanova <- adonis2(bray_curtis_matrix ~ Vegetarian, data = metadata, permutations = 999)
+Error in qr.fitted(qrhs, G) : 
+  'qr' and 'y' must have the same number of rows
+> print(rownames(bray_curtis_matrix))
+ [1] "Agile" "Amber" "Apple" "Cedar" "Crown" "Dance" "Dwell" "Eagle" "Earth" "Fleet" "Giant" "Grace" "Honor" "Inlet"
+[15] "Joker" "Kneel" "Knife" "Latch" "Lemon" "Mover" "North" "Ocean" "Outer" "Overt" "Paint" "Quiet" "Quirk" "Roast"
+[29] "Rocky" "Shore" "Smart" "Spark" "Storm" "Trend" "Vapor" "Water" "Zebra"
+> print(metadata$X.SampleID)
+ [1] "Glint"  "Agile"  "Amber " "Apple"  "Brave"  "Cedar"  "Crown"  "Dance"  "Drive"  "Dwell"  "Eagle"  "Earth" 
+[13] "Fleet"  "Giant"  "Grace"  "Honor"  "Inlet"  "Joker"  "Jolly"  "Kneel"  "Knife " "Latch"  "Lemon"  "Magic" 
+[25] "Mover"  "North"  "Novel"  "Ocean"  "Outer"  "Overt"  "Paint"  "Quiet"  "Quirk"  "Roast"  "Rocky"  "Shore" 
+[37] "Smart"  "Spark"  "Storm"  "Trend"  "Truce"  "Unity"  "Value"  "Vapor"  "Water"  "Woven"  "Zebra"  ""      
+> metadata$X.SampleID <- trimws(metadata$X.SampleID)
+> metadata_subset <- metadata[metadata$X.SampleID %in% rownames(bray_curtis_matrix), ]
+> metadata_subset <- metadata_subset[match(rownames(bray_curtis_matrix), metadata_subset$X.SampleID), ]
+> print(rownames(bray_curtis_matrix))
+ [1] "Agile" "Amber" "Apple" "Cedar" "Crown" "Dance" "Dwell" "Eagle" "Earth" "Fleet" "Giant" "Grace" "Honor" "Inlet"
+[15] "Joker" "Kneel" "Knife" "Latch" "Lemon" "Mover" "North" "Ocean" "Outer" "Overt" "Paint" "Quiet" "Quirk" "Roast"
+[29] "Rocky" "Shore" "Smart" "Spark" "Storm" "Trend" "Vapor" "Water" "Zebra"
+> print(metadata_subset$X.SampleID)
+ [1] "Agile" "Amber" "Apple" "Cedar" "Crown" "Dance" "Dwell" "Eagle" "Earth" "Fleet" "Giant" "Grace" "Honor" "Inlet"
+[15] "Joker" "Kneel" "Knife" "Latch" "Lemon" "Mover" "North" "Ocean" "Outer" "Overt" "Paint" "Quiet" "Quirk" "Roast"
+[29] "Rocky" "Shore" "Smart" "Spark" "Storm" "Trend" "Vapor" "Water" "Zebra"
+> bray_permanova <- adonis2(bray_curtis_matrix ~ Vegetarian, data = metadata_subset, permutations = 999)
+> print(bray_permanova)
+Permutation test for adonis under reduced model
+Permutation: free
+Number of permutations: 999
+
+adonis2(formula = bray_curtis_matrix ~ Vegetarian, data = metadata_subset, permutations = 999)
+         Df SumOfSqs      R2      F Pr(>F)
+Model     1   0.1707 0.03763 1.3686  0.171
+Residual 35   4.3651 0.96237              
+Total    36   4.5358 1.00000              
+> jaccard_permanova <- adonis2(binary_jaccard_matrix ~ Vegetarian, data = metadata_subset, permutations = 999)
+> print(jaccard_permanova)
+Permutation test for adonis under reduced model
+Permutation: free
+Number of permutations: 999
+
+adonis2(formula = binary_jaccard_matrix ~ Vegetarian, data = metadata_subset, permutations = 999)
+         Df SumOfSqs      R2      F Pr(>F)
+Model     1   0.2913 0.02768 0.9962  0.465
+Residual 35  10.2344 0.97232              
+Total    36  10.5257 1.00000 
